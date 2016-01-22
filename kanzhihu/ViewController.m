@@ -8,20 +8,31 @@
 
 #import "ViewController.h"
 
+//FIXME: test import
+#import <AFNetworking.h>
+
 @interface ViewController ()
 
 @end
 
 @implementation ViewController
 
+#pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    UIWebView *webView = [[UIWebView alloc] init];
+    
+    NSURL *URL = [NSURL URLWithString:@"http://www.kanzhihu.com/"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    [webView loadRequest:request];
+    
+    [self.view addSubview:webView];
+    webView.frame = self.view.bounds;
+    
+    //FIXME: test AFNetworking
+    [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:@"" parameters:nil error:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end
